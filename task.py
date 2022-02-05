@@ -1,4 +1,3 @@
-# https://github.com/alicevino/maps_API
 import pygame
 import requests
 import os
