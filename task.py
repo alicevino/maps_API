@@ -8,8 +8,6 @@ class Params(object):
     def __init__(self):
         self.latitude = 55.753630
         self.longitude = 37.620070
-        self.z = 10  # масштаб
-        self.type = 'map'  # Другие значения "sat", "sat,skl"
 
     def ll(self):
         answer = str(self.longitude) + ',' + str(self.latitude)
@@ -17,8 +15,7 @@ class Params(object):
 
 
 def load_map(map):
-    map_request = "http://static-maps.yandex.ru/1.x/?ll={ll}&z={z}&l={type}".format(ll=map.ll(),
-                                                                                        z=map.z, type=map.type)
+    map_request = "http://static-maps.yandex.ru/1.x/?ll={ll}&spn=0.04,0.04&l=map".format(ll=map.ll())
     response = requests.get(map_request)
     if not response:
         print('Ошибка:', map_request)
