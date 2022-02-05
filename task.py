@@ -31,16 +31,19 @@ def load_map(map):
         sys.exit(2)
     return map_file
 
-running = True
 
+
+running = True
 pygame.init()
 screen = pygame.display.set_mode((600, 450))
 my_map = Params()
-map_file = load_map(my_map)
-screen.blit(pygame.image.load(map_file), (0, 0))
-pygame.display.flip()
-while pygame.event.wait().type != pygame.QUIT:
-    pass
-pygame.quit()
+while running:
+    map_file = load_map(my_map)
+    screen.blit(pygame.image.load(map_file), (0, 0))
+    pygame.display.flip()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            os.remove(map_file)
 
-os.remove(map_file)
+pygame.quit()
